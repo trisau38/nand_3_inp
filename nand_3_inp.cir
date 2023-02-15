@@ -1,0 +1,25 @@
+.title nand_3_inp
+.include techfile130.txt
+
+vdd vdd 0 1.2
+
+vA A 0 PULSE(0 1.2 2NS 2NS 2NS 50NS 100NS)
+vB B 0 PULSE(0 1.2 20NS 2NS 2NS 50NS 100NS)
+vC C 0 PULSE(0 1.2 30NS 2NS 2NS 50NS 100NS)
+
+Mp1 vout A vdd vdd pmos l=120n w=1440n
+Mp2 vout B vdd vdd pmos l=120n w=1440n
+Mp3 vout C vdd vdd pmos l=120n w=1440n
+
+Mn1 vout A 1 0 nmos l=120n w=1440n
+Mn2 1 B 2 0 nmos l=120n w=1440n
+Mn3 2 C 0 0 nmos l=120n w=1440n
+
+
+.tran 0.1n 200n 0 0.1n
+
+.control
+run 
+plot v(A) v(B) v(vout)
+.endc
+.end
